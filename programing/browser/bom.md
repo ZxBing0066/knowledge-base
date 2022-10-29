@@ -13,3 +13,33 @@
 -   history
 -   navigator
 -   cookie
+
+## history
+
+### hash 路由 和 h5 路由
+
+### 如何实现 SPA
+
+## 存储
+
+### cookie
+
+### localStorage
+
+onstorage
+
+### sessionStorage
+
+### web-sql
+
+## 创建窗口
+
+## 多窗口通信
+
+BroadcastChannel、postMessage
+
+## 屏幕信息
+
+## 定位
+
+## 陀螺仪
