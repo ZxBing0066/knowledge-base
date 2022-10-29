@@ -79,7 +79,7 @@ const config = {
                         position: 'left',
                         activeBaseRegex: `/awesome/`
                     },
-                    { to: '/blog', label: 'Blog', position: 'left' },
+                    { to: 'https://blog.heyfe.org', label: 'Blog', position: 'right' },
                     {
                         href: 'https://github.com/zxbing0066',
                         label: 'GitHub',
@@ -117,7 +117,7 @@ const config = {
                         ]
                     }
                 ],
-                copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`
+                copyright: `© 2022-present <a href="https://github.com/ZxBing0066" target="_blank">ZxBing0066</a>. All Rights Reserved. Built with Docusaurus.`
             },
             prism: {
                 theme: lightCodeTheme,
