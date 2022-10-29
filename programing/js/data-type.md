@@ -1,6 +1,6 @@
 # 数据类型
 
-## 基本类型
+## 基本类型/原始类型/非引用类型
 
 -   number
 -   bigint
@@ -10,13 +10,20 @@
 -   null
 -   undefined
 
-## 引用类型
+## 引用类型/复杂类型
 
 新手要注意多变量指向同一个引用，当引用中的属性变更时会影响所有变量。
 
 ## 包装类型
 
-所有基础类型的属性都通过包装类型来实现。
+所有基础类型的属性访问都通过包装类型来实现。
+
+```js
+'aaa'.length;
+const s = 'string';
+s.length = 4;
+s._a = 1;
+```
 
 ## 类型转换
 
@@ -34,12 +41,14 @@
 
 ### instanceof
 
-一般用于判断是否为对应类型的实例
+一般用于判断是否为对应类型的实例，本质是检查右值 prototype 是否在左值的原型鲢上。基本类型的
 
 -   Object instanceof Object
 -   Function instanceof Function
 -   Object instanceof Function
 -   Function instanceof Object
+
+> es 标准定义：https://tc39.es/ecma262/multipage/ecmascript-language-expressions.html#sec-instanceofoperator
 
 ### typeof
 
@@ -72,10 +81,23 @@
 
 ```ts
 function getType(v: any) {
-    return {}.toString.call(v).replace('[Object ', '').replace(']', '');
+    return {}.toString.call(v).replace('[object ', '').replace(']', '');
 }
+```
+
+! 注意遇到基本类型的对象实例会翻车：
+
+```js
+getType(new String(''));
+// String
 ```
 
 Array.isArray 判断数组
 
 Number.isNaN 判断 NaN
+
+### 常规方案
+
+1. 通过 === null 和 === undefined 判断出两个特殊类型
+2. 通过 typeof 判断出其它基本类型
+3. 通过 Object toString 判断出复杂类型
