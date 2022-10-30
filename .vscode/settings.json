@@ -1,0 +1,5 @@
+{
+    "markdown-image.cloudinary.folder": "",
+    "markdown-image.local.path": "/static/img",
+    "markdown-image.base.fileNameFormat": "${mdname}-${hash}"
+}
