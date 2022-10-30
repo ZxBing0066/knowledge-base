@@ -1,0 +1,31 @@
+# 常用属性
+
+-   定位 position
+    -   sticky
+    -   fixed
+    -   relative
+    -   static
+    -   absolute
+-   布局 display
+    -   block
+    -   inline-block
+    -   inline
+    -   flex
+    -   inline-flex
+    -   grid
+    -   table
+    -   flow-root
+-   对齐
+-   动画 animation
+-   转换 transform
+    -   translate
+    -   skew
+    -   scale
+    -   rotate
+    -   matrix
+-   渐变 transition
+    -   property name
+    -   duration
+    -   easing function
+    -   delay
+-   滤镜/裁剪/遮罩/混合

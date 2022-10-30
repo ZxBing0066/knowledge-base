@@ -14,17 +14,12 @@ const config = {
     onBrokenMarkdownLinks: 'warn',
     favicon: 'img/favicon.ico',
 
-    // GitHub pages deployment config.
-    // If you aren't using GitHub pages, you don't need these.
-    organizationName: 'facebook', // Usually your GitHub org/user name.
-    projectName: 'docusaurus', // Usually your repo name.
-
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
     // to replace "en" with "zh-Hans".
     i18n: {
-        defaultLocale: 'zh-Hans',
-        locales: ['zh-Hans']
+        defaultLocale: 'zh-CN',
+        locales: ['zh-CN']
     },
     presets: [
         [
@@ -74,15 +69,19 @@ const config = {
                         label: '编程'
                     },
                     {
-                        to: '/awesome/website',
+                        to: '/awesome/',
                         label: '有趣',
                         position: 'left',
                         activeBaseRegex: `/awesome/`
                     },
-                    { to: 'https://blog.heyfe.org', label: 'Blog', position: 'right' },
+                    {
+                        href: 'https://blog.heyfe.org',
+                        className: 'header-blog-link',
+                        position: 'right'
+                    },
                     {
                         href: 'https://github.com/zxbing0066',
-                        label: 'GitHub',
+                        className: 'header-github-link',
                         position: 'right'
                     }
                 ]
@@ -91,28 +90,69 @@ const config = {
                 style: 'dark',
                 links: [
                     {
-                        title: 'Community',
+                        title: '个人作品',
                         items: [
                             {
-                                label: 'Stack Overflow',
-                                href: 'https://stackoverflow.com/questions/tagged/docusaurus'
+                                label: '像素风转换器 - shadow 像素风生成器',
+                                href: 'https://pixel.heyfe.org/'
                             },
                             {
-                                label: 'Discord',
-                                href: 'https://discordapp.com/invite/docusaurus'
+                                label: '中国色彩 · 一键配色',
+                                href: 'https://chinese-colors.heyfe.org/'
                             },
                             {
-                                label: 'Twitter',
-                                href: 'https://twitter.com/docusaurus'
+                                label: '诗歌朗诵',
+                                href: 'https://poetry-reader.heyfe.org/'
+                            },
+                            {
+                                label: 'Chrome 书签标签管理',
+                                href: 'https://chrome.google.com/webstore/detail/tag-bookmarks/liofmdplmickalghfcokjdeohefnnofc'
+                            },
+                            {
+                                label: '更多',
+                                href: 'https://www.heyfe.org/'
                             }
                         ]
                     },
                     {
-                        title: 'More',
+                        title: '开源项目',
                         items: [
                             {
-                                label: 'GitHub',
-                                href: 'https://github.com/facebook/docusaurus'
+                                label: 'Mod - 微模块加载器',
+                                href: 'https://www.heyfe.org/micro-mod/'
+                            },
+                            {
+                                label: 'RAPIOP - 微前端',
+                                href: 'https://github.com/ZxBing0066/rapiop'
+                            },
+                            {
+                                label: 'JS 沙箱',
+                                href: 'https://github.com/ZxBing0066/z-sandbox'
+                            },
+                            {
+                                label: 'React 组件文档套件',
+                                href: 'https://github.com/ZxBing0066/recodo'
+                            },
+                            {
+                                label: '更多',
+                                href: 'https://github.com/ZxBing0066'
+                            }
+                        ]
+                    },
+                    {
+                        title: '其它',
+                        items: [
+                            {
+                                label: 'GitHub 首页',
+                                href: 'https://github.com/ZxBing0066'
+                            },
+                            {
+                                label: '博客首页',
+                                href: 'https://blog.heyfe.org/'
+                            },
+                            {
+                                label: '掘金首页',
+                                href: 'https://juejin.cn/user/219558054997710'
                             }
                         ]
                     }

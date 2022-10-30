@@ -1,4 +1,4 @@
-# markdown 语法
+# markdown 扩展语法
 
 部分少见的 markdown 语法记录（部分 markdown 引擎可能会不支持）。
 
@@ -57,12 +57,9 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 ## 定义表
 
 ```md
-First Term 
-: This is the definition of the first term.
+First Term : This is the definition of the first term.
 
-Second Term 
-: This is one definition of the second term.
-: This is another definition of the second term.
+Second Term : This is one definition of the second term. : This is another definition of the second term.
 ```
 
 ```html

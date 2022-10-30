@@ -1,5 +1,7 @@
 # 语法
 
+![picture 1](/img/grammer-acb001fa49d9b485e47dc6b93c40b46dd2c3bd63d5f27ee5fa65bef12aa0e256.png)
+
 ## 基础的语法
 
 -   属性
