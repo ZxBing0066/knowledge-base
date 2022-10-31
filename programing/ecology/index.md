@@ -1,0 +1,38 @@
+# 生态圈
+
+-   时间/日期处理
+    -   https://github.com/date-fns/date-fns
+    -   https://github.com/iamkun/dayjs
+    -   moment
+-   多端/跨平台
+    -   https://github.com/tauri-apps/tauri
+    -   react-native
+    -   flutter
+    -   https://www.electronjs.org/
+    -   https://github.com/neutralinojs/neutralinojs
+    -   https://nwjs.io/
+-   turborepo 为 monorepo 服务的构建系统
+-   https://bit.dev/ 组件管理器：组件类似于镜像、平台相当于 docker
+-   https://floating-ui.com/ 浮动、浮层、弹出层元素库
+-   typescript runtime
+-   express
+-   koa
+-   前端开发编译
+    -   terser
+    -   scss、less、post-css、stylus
+    -   eslint、stylelint
+    -   autoprefixer
+    -   css-modules
+    -   pugjs、moustache、posthtml
+    -   prettier
+-   graphQL
+-   nginx
+    -   部署
+    -   负载均衡
+    -   SPA
+    -   脚本
+    -   配置
+        -   域名
+        -   反代
+        -   https
+        -   缓存

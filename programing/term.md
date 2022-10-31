@@ -1,0 +1,4 @@
+# 行业术语
+
+-   CEO、CTO、COO、CFO、PM、QA、UI、FE、DEV、DBA、OPS
+-   B2B、B2C、C2C、O2O

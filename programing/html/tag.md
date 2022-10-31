@@ -1,9 +1,9 @@
 # 标签/元素
 
-## 注意：
+## 注意
 
--   ​ 非标准元素(如 xxx)浏览器不会报错，会作为 HTMLUnknownElement
--   ​ 自定义元素（如 x-xxx）会作为 HTMLElement
+-   非标准元素(如 xxx)浏览器不会报错，会作为 HTMLUnknownElement
+-   自定义元素（如 x-xxx）会作为 HTMLElement
 -   名称带有 - 的元素将会被视为自定义元素，其余未定义的被视为非标准元素
 
 ## html

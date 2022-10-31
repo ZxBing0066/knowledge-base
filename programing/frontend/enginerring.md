@@ -1,3 +1,82 @@
 # 前端工程化
 
 可以简单的理解为一切为了前端项目的稳定性、维护性、开发效率等而采用的各种手段。
+
+-   CI/CD
+    -   gitlab ci
+    -   jenkins
+    -   circleci
+    -   travisci
+    -   GitHub actions
+-   热更新原理
+    -   hot.apply
+-   打包
+    -   工具
+        -   webpack
+            -   优化
+                -   开发
+                    -   thread-loader
+                    -   cache-loader
+                    -   热更新
+                    -   exclude、include
+                    -   区分环境
+                -   生产
+                    -   代码压缩
+                    -   tree-shaking
+                    -   source-map
+                    -   gzip
+                    -   ｜ 需要静态服务器端配合
+                    -   ｜ 静态文件服务器会优先使用静态 gzip 文件，这样可以减少 gzip 时静态服务器 cpu 的消耗
+                -   分包、懒加载
+                -   url-loader
+                -   流程
+            -   打包分析
+            -   概念
+                -   loader
+                    -   处理模块内容，进行模块转化
+                    -   将 content 转换为后通过 return 或 callback 放出
+                    -   ｜ module.exports = function(content, map, meta) { this.callback(null,
+                        someSyncOperation(content), map, meta); return;
+                    -   存在同步和异步
+                    -   ｜ 通过 this.sync 转换为异步 loader
+                    -   通过设置 loader.raw 可获取到 buffer（默认为 string）
+                    -   执行顺序为从右到左，但是会从左到右先执行一遍 pitch 方法
+                -   plugin
+                    -   主要用作功能扩展
+                    -   tapable hooks
+                        -   hook 类型
+                            -   sync
+                            -   async
+                            -   waterfall
+                            -   bail
+                            -   Parallel
+                            -   loop
+                            -   Series
+                        -   生命周期
+                            -   beforeCompile
+                            -   compile
+                            -   emit
+                            -   done
+                            -   fail
+                -   entry
+                -   output
+                -   hash
+            -   手撸
+                -   获取入口文件
+                -   解析入口文件
+                -   获取入口文件 ast 中的依赖
+                -   递归解析依赖文件
+                -   保存文件内容、id、依赖
+                -   完成递归后将所有模块放入数组
+                -   拼接模块数组和 \_\_require 函数
+        -   esbuild
+        -   snowpack
+        -   vite
+    -   概念
+        -   tree-shaking
+        -   依赖树
+-   发包
+-   npm 包安装、lock、常见问题
+-   lint
+    -   eslint
+    -   stylelint

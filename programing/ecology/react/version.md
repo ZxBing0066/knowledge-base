@@ -1,0 +1,36 @@
+# 版本更新
+
+-   16
+    -   context
+    -   strict mode
+    -   增加 hooks
+    -   portal
+    -   fragment
+    -   snapshot
+    -   didcatch
+    -   getStateFromProps
+    -   createRef
+    -   forwardRef
+-   17
+    -   事件池移除
+    -   事件委托移动到 root 节点
+    -   useEffect clean 方法改为异步执行
+    -   ｜ 有存在隐患，如 dom 清理、ref.current 获取，可能会出现问题
+    -   onScroll 不再冒泡
+-   18
+    -   新的 render 启用并发渲染、批处理
+    -   批处理
+        -   早前非 react 管理的调度状态中没有进行批处理（原生事件、settimeout）
+    -   timeout、promise 等原先无法批量更新的地方变更为批量更新，不会每次调用 setState 都强制触发更新
+    -   ｜ 所有的 setState 都变成异步？
+    -   忽略组件卸载后的 setState 报错
+    -   组件返回 undefined 不会再报错
+    -   suspense fallback 默认为 null，不会因为不传 fallback 而跳过
+    -   严格模式第二次渲染改为灰色
+    -   startTransition 来标记非紧急任务
+    -   ｜ 启用并发模式
+    -   suspense 增强
+    -   react-dom 增加 client
+    -   增加 createRoot
+    -   增加 hydrateRoot
+    -   新的 hooks

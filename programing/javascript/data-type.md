@@ -48,7 +48,8 @@ s._a = 1;
 -   Object instanceof Function
 -   Function instanceof Object
 
-> es 标准定义：https://tc39.es/ecma262/multipage/ecmascript-language-expressions.html#sec-instanceofoperator
+> es 标准定义：https://tc39.es/ecma262/multipage/ecmascript-language-expressions.html#sec-instanceofoperator >
+> https://stackoverflow.com/questions/23622695/why-in-javascript-both-object-instanceof-function-and-function-instanceof-obj
 
 ### typeof
 

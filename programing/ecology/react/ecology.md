@@ -1,0 +1,120 @@
+# 生态
+
+-   脚手架
+    -   create react app
+    -   vite
+-   服务端渲染/静态建站
+    -   next.js
+    -   gatsby.js
+    -   remix
+    -   https://docusaurus.io/
+    -   https://astro.build/
+-   数据管理/状态管理
+    -   state、props、context、useReducer
+    -   redux
+        -   原理
+        -   ｜ store.dispatch action => reducer 处理 action => 数据更新。
+        -   ｜ ​ 组件订阅 store 来获取数据
+            -   发布订阅
+            -   Store
+                -   参数
+                    -   reducer
+                        -   接受当前 state 和 action，返回处理后的 state
+                    -   preloadedState
+                        -   初始的 state
+                    -   enhancer
+                        -   一般用来接受中间件处理
+                -   返回值
+                    -   subscribe
+                    -   ｜ 订阅 state 更新
+                    -   dispatch
+                    -   ｜ 发送 action 触发更新
+                    -   getState
+                    -   ｜ store 中的全部状态
+                    -   replaceReducer
+                    -   ｜ 热更新、异步加载等情况下替换 reducer
+            -   Provider
+                -   通过 Context 传递 store 和 subscription
+            -   connect
+                -   将 store 转换为 props 传入组件
+            -   combineReducers
+            -   ｜ 拆分 reducer，通过 combine 进行组合
+            -   batch
+        -   store
+        -   ｜ 存储数据
+        -   ｜ 内部存在状态树
+        -   ｜
+        -   reducer
+        -   ｜ 函数，在 dispatch 时获取当前 store 的 state 和 dispatch 的 action，处理 state 并返回
+        -   action
+        -   ｜ 动作类型，必须包含 type，用于区分
+        -   connect
+        -   ｜ connect(mapStateToProps, mapDispatchToProps)(MyComponent)
+        -   ｜
+        -   ｜ 连接组件与 store
+        -   撤销重做
+        -   ｜ 栈保存改动历史
+        -   SSR
+            -   获取 store 和当前 state
+            -   将 state 写到 html 中
+            -   读取 html 中服务端渲染的 state
+            -   创建 store 传入 preloadedState
+            -   hydrate
+    -   mobx
+    -   xstate
+    -   recoil
+-   数据请求
+    -   react query
+    -   @apollo/client
+    -   URQL
+    -   Relay
+-   路由
+    -   react-router-dom
+-   样式
+    -   css module
+    -   classnames、clsx 类名拼接
+    -   styled components、emotion
+-   组件库
+    -   material ui
+    -   mantine
+    -   chakra
+    -   Primer
+    -   nextui
+    -   Semantic
+    -   radix
+-   动画
+    -   https://github.com/pmndrs/react-spring
+    -   https://github.com/chenglou/react-motion
+    -   https://github.com/sghall/react-move
+    -   https://www.framer.com/motion/
+-   图表库
+    -   https://recharts.org/en-US/
+    -   https://github.com/reactchartjs/react-chartjs-2
+    -   https://nivo.rocks/
+    -   https://github.com/airbnb/visx
+    -   https://formidable.com/open-source/victory/
+-   表单
+    -   https://react-hook-form.com/
+    -   https://github.com/jaredpalmer/formik
+    -   https://final-form.org/react
+-   数据可变性
+    -   https://github.com/immerjs/immer
+-   i18n
+    -   https://github.com/formatjs/formatjs
+    -   https://github.com/i18next/react-i18next
+    -   react-intl
+-   富文本编辑器
+    -   https://draftjs.org/
+    -   https://www.slatejs.org/examples/richtext
+    -   https://github.com/zenoamaro/react-quill
+-   vr/ar/3d
+    -   https://github.com/supermedium/aframe-react
+    -   https://github.com/pmndrs/react-three-fiber
+-   文档
+    -   storybook
+    -   https://github.com/styleguidist/react-styleguidist
+    -   https://github.com/doczjs/docz
+    -   https://github.com/facebook/docusaurus
+-   测试
+    -   react-test-renderer
+    -   jest
