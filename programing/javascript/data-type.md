@@ -48,6 +48,9 @@ s._a = 1;
 -   Object instanceof Function
 -   Function instanceof Object
 
+通过 Symbol.hasInstance 自定义 instanceof 行为
+：https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/hasInstance
+
 > es 标准定义：https://tc39.es/ecma262/multipage/ecmascript-language-expressions.html#sec-instanceofoperator >
 > https://stackoverflow.com/questions/23622695/why-in-javascript-both-object-instanceof-function-and-function-instanceof-obj
 

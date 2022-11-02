@@ -63,4 +63,10 @@
     -   layoutEffect 为同步，可减少闪烁但不可滥用
 -   任务优先级
 
-![picture 4](/img/index-377c20d26cfd4cc5a5a5c5713511a9b03414f9f322fc2bf975fc6d9ea76e568b.png)  
+![picture 4](/img/index-377c20d26cfd4cc5a5a5c5713511a9b03414f9f322fc2bf975fc6d9ea76e568b.png)
+
+## FAQ
+
+-   effect 触发两次，API 触发两次等问题。
+
+    React 严格模式会连续调用两次 effect 来确保数据正确，可以关闭严格模式或做好防抖节流

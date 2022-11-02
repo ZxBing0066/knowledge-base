@@ -12,7 +12,7 @@ const config = {
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
-    favicon: 'img/favicon.ico',
+    favicon: 'img/logo.svg',
 
     // Even if you don't use internalization, you can use this field to set useful
     // metadata like html lang. For example, if your site is Chinese, you may want
@@ -55,6 +55,11 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            // algolia: {
+            //     apiKey: 'b7812c9afd8f1285845a9da0ffe48505',
+            //     appId: 'H08KLIUDSR',
+            //     indexName: 'knowledge-base'
+            // },
             navbar: {
                 title: '嘿知识',
                 logo: {
