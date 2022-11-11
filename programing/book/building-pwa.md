@@ -77,8 +77,7 @@ navigator.serviceWorker
 
     -   installing
 
-        -   使用 register 时，代码会被下载、解析并进入安装状态，如果安装成功，就会进入 installed 状态。发生错误则进入
-            redundant 状态。
+        -   使用 register 时，代码会被下载、解析并进入安装状态，如果安装成功，就会进入 installed 状态。发生错误则进入 redundant 状态。
 
         -   监听 install 事件，并调用 waitUntil 可延时 install 事件，promise 失败后会进入 redundant 状态。
 
@@ -104,8 +103,7 @@ navigator.serviceWorker
 
     -   service worker 独立于窗口或标签
 
-    -   第一次加载时安装 service worker，然而此时页面已经开始执行，service worker 无法控制，只有等安装完成后的打开的页面
-        才可被控制。
+    -   第一次加载时安装 service worker，然而此时页面已经开始执行，service worker 无法控制，只有等安装完成后的打开的页面才可被控制。
 
 -   service worker 生命周期和 waitUntil
 
@@ -119,8 +117,7 @@ navigator.serviceWorker
 
     -   新的 service worker 注册和安装后不会替换现有的 service worker，而是保持 waiting
 
-    -   直到 service worker 作用域下的每个标签页或窗口关闭，旧的 service worker 才会进入废弃状态，新的 service worker 才
-        会激活
+    -   直到 service worker 作用域下的每个标签页或窗口关闭，旧的 service worker 才会进入废弃状态，新的 service worker 才会激活
 
     -   设计是为了防止多版本 service worker 同时运行导致不兼容问题
 
@@ -264,8 +261,7 @@ navigator.serviceWorker
 
         -   遵循同源策略
 
-        -   数据库是版本控制的。创建或修改结构时可通过新版本号打开数据库连接，会触发 upgrade needed 事件，在事件中处理新
-            旧版本的迁移更改
+        -   数据库是版本控制的。创建或修改结构时可通过新版本号打开数据库连接，会触发 upgrade needed 事件，在事件中处理新旧版本的迁移更改
 
         -   大部分 IndexedDB 操作都是异步的
 
