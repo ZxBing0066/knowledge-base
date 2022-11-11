@@ -33,11 +33,11 @@ table {
     display: table;
     width: 100%;
 }
-.navbar--fixed-top {
+.navbar--fixed-top:not(:has(>.navbar-sidebar)) {
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: saturate(50%) blur(5px);
 }
-[data-theme='dark'] .navbar--fixed-top {
+[data-theme='dark'] .navbar--fixed-top:not(:has(>.navbar-sidebar)) {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -62,4 +62,8 @@ table {
 .header-github-link:hover,
 .header-blog-link:hover {
     opacity: 0.6;
+}
+
+.footnote-backref {
+    margin-left: 1em;
 }

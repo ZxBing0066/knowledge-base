@@ -1,0 +1,50 @@
+import SandpackEditor from '@theme/SandpackEditor';
+
+# docusaurus
+
+## 图
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+## SandpackEditor
+
+<SandpackEditor>
+
+```tsx
+export default () => {
+    return (
+        <div>
+            <h1>Hello World</h1>
+            <p>Play with me!</p>
+        </div>
+    );
+};
+```
+
+</SandpackEditor>
+
+## 主题色
+
+```js title="docusaurus.config.js"
+module.exports = {
+    themeConfig: {
+        // highlight-start
+        colorMode: {
+            defaultMode: 'light',
+            disableSwitch: false,
+            respectPrefersColorScheme: false
+        }
+        // highlight-end
+    }
+};
+```
+
+## 参考资料
+
+-   https://www.lukebelliveau.dev/sandpack-docusaurus

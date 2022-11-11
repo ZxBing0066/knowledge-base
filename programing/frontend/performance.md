@@ -9,3 +9,14 @@
     -   dom 最大宽高
     -   https://stackoverflow.com/questions/10882769/do-the-browsers-have-a-maximum-height-for-the-body-document
     -   https://github.com/bvaughn/react-virtualized/issues/193​
+-   防抖节流
+-   减少重绘重排
+-   事件委托
+-   加载控制，预加载
+-   集中 dom 操作
+-   分包、压缩、cdn
+-   prefetch、preload
+-   http 2
+-   ssr
+-   静态资源分域
+-   利用缓存

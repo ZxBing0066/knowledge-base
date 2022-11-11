@@ -149,14 +149,23 @@
 -   embed/object param🫥 ｜ 嵌入内容｜ 可嵌入各种内容，浏览器会使用插件等展示内容，可用于视频、pdf 等展示｜ embed 和
     object 区别：embed 为 H5 标准，object 较旧，推荐使用 embed
 -   style ｜ 嵌入 css - media ｜ 可使用该标签实现媒体查询
--   script ｜ 嵌入 js - src ｜ 载入远程脚本文件 - type - 默认 ｜ 可嵌入 js 脚本 - module🔥 ｜ 原生的 js module 支持 -
-    other ｜ 可用作数据块，不会执行。比如用作嵌入模版等 - async⚠️ ｜ 脚本会同步下载（现代浏览器其实都会预先加载脚本），
-    并在下载后立即执行，不会遵循顺序执行 ｜ - defer⚠️ ｜ 脚本会等到页面解析完成后并在 DOMContentLoaded 事件触发前执行 -
-    nomodule ｜ 在浏览器不支持 es module 时执行，一般用作 module 类型脚本回退兼容
--   iframe🧑🏻‍💻 ｜ 可在页面中嵌入其它页面 - allow ｜ 功能配置，是否支持摄像头、定位等 - sandbox ｜ 沙盒配置，是否支持下载、
-    指纹、弹窗等 - 通信 🧐 - 直接调用全局变量 ｜ 仅限于同域情况下 - postMessage ｜ 通过 postMessage 通信，通过
-    targetOrigin 解决安全隐患 - url change ｜ 修改 iframe 的 hash 值，然后在 iframe 中定时监听 hash 的变化 - 安全检查 ⚠️
-    ｜ 检查上层页面是否允许嵌套本页面，避免安全隐患
+-   script ｜ 嵌入 js
+    -   src ｜ 载入远程脚本文件
+    -   type
+        -   默认 ｜ 可嵌入 js 脚本
+    -   module🔥 ｜ 原生的 js module 支持
+    -   other ｜ 可用作数据块，不会执行。比如用作嵌入模版等 -
+    -   async⚠️ ｜ 脚本会同步下载（现代浏览器其实都会预先加载 脚本），并在下载后立即执行，不会遵循顺序执行
+    -   defer⚠️ ｜ 脚本会同步下载，但是会等到页面解析完成后并在 DOMContentLoaded 事件触发前执行，会按照顺序执行
+    -   nomodule ｜ 在浏览器不支持 es module 时执行，一般用作 module 类型脚本回退兼容
+-   iframe🧑🏻‍💻 ｜ 可在页面中嵌入其它页面
+    -   allow ｜ 功能配置，是否支持摄像头、定位等
+    -   sandbox ｜ 沙盒配置，是否支持下载、指纹、弹窗等
+    -   通信 🧐
+        -   直接调用全局变量 ｜ 仅限于同域情况下
+        -   postMessage ｜ 通过 postMessage 通信，通过 targetOrigin 解决安全隐患
+        -   url change ｜ 修改 iframe 的 hash 值，然后在 iframe 中定时监听 hash 的变化
+    -   安全检查 ⚠️ ｜ 检查上层页面是否 允许嵌套本页面，避免安全隐患
 -   template ｜ 用于存储 html 片段，方便复用｜
 -   slot ｜ 配合 template 使用，从而将元素插入 template 内部
 

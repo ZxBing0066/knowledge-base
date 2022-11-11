@@ -70,3 +70,17 @@
 -   effect 触发两次，API 触发两次等问题。
 
     React 严格模式会连续调用两次 effect 来确保数据正确，可以关闭严格模式或做好防抖节流
+
+-   废弃的三个声明周期
+
+    -   willMount
+    -   willUpdate
+    -   willReceiveProps
+
+-   废弃的原因
+
+    -   fiber 架构中 will 可能会调用多次
+
+-   新增的两个声明周期
+    -   getDerivedStateFromProps
+    -   getSnapshotBeforeUpdate

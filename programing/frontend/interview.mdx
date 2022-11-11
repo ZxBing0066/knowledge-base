@@ -1,0 +1,249 @@
+import SandpackEditor from '@theme/SandpackEditor';
+
+# 面试题
+
+## 话题
+
+### javascript
+
+-   数据类型
+    -   有哪些
+    -   引用非引用
+    -   堆、栈存储
+    -   数据类型判断
+-   clone
+    -   深 clone、浅 clone
+-   原型
+    -   原型链
+    -   继承
+
+## 手写
+
+### 深拷贝 - deep clone
+
+JSON.parse(JSON.stringify(target)) 问题：
+
+-   会导致一些类型丢失，如 undefined、function
+-   一些类型会变为字符串无法还原，如 date
+-   环引用报错
+
+```js title=简单实现
+const deepClone = (target, map = new WeakMap()) => {
+    // 直接返回基础类型和 function
+    if (target == null || typeof target !== 'object') return target;
+    // 防环引用
+    if (map.has(target)) return map.get(target);
+    let result = Array.isArray(target) ? [] : {};
+    for (let key in target) {
+        const t = target[key];
+        result[key] = deepClone(t, map);
+    }
+    return map.set(target, result);
+};
+```
+
+还存在问题：
+
+-   一些特殊类型的处理，如 Date，Error
+
+### call/apply
+
+```js title=call
+function call(fn, ctx = window, ...args) {
+    const _symbol = Symbol('invoke');
+    ctx[_symbol] = fn;
+    const result = fn(...args);
+    delete ctx[_symbol];
+    return result;
+}
+call(fn, {}, 1, 2, 3);
+```
+
+```js title=apply
+function apply(fn, ctx = window, args) {
+    const _symbol = Symbol('invoke');
+    ctx[_symbol] = fn;
+    const result = fn(...args);
+    delete ctx[_symbol];
+    return result;
+}
+apply(fn, {}, [1, 2, 3]);
+```
+
+### bind
+
+```js
+function bind(fn, ctx, ...args) {
+    return function () {
+        return fn.call(ctx, ...args, ...arguments);
+    };
+}
+```
+
+### new
+
+```js
+const oToString = {}.toString;
+const isPrimitive = v => {
+    if (!v) return true;
+    switch (typeof v) {
+        case 'number':
+        case 'bigint':
+        case 'symbol':
+        case 'string':
+        case 'boolean':
+            return true;
+        default:
+            return false;
+    }
+};
+function theNew(constructor, ...args) {
+    const instance = {};
+    if (!isPrimitive(constructor.prototype)) {
+        Object.setPrototypeOf(instance, constructor.prototype);
+    }
+    const result = constructor.call(instance, ...args);
+    if (isPrimitive(result)) {
+        return result;
+    }
+    return instance;
+}
+```
+
+### EventEmitter
+
+```js
+class EventEmitter {}
+```
+
+```js title=防抖 debounce 简易版
+function debounce(fn, wait) {
+    let t;
+    return function () {
+        clearTimeout(t);
+        t = setTimeout(fn, wait);
+    };
+}
+```
+
+-   this 处理
+-   初始立即执行
+
+```js title=节流 throttle 简易版
+function throttle(fn, wait) {
+    let tag = true;
+    return function () {
+        if (tag) {
+            fn();
+            tag = false;
+            setTimeout(() => {
+                tag = true;
+            }, wait);
+        }
+    };
+}
+```
+
+```js title=节流 throttle 完善
+function throttle(fn, wait) {
+    let tag = true;
+    let do;
+    return function () {
+        do = () => fn.apply(this, arguments);
+        if (tag) {
+            tag = false;
+            setTimeout(() => {
+                do();
+                tag = true;
+            }, wait);
+        }
+    };
+}
+```
+
+```js title=instanceof
+function instanceOf(obj, cls) {
+    if (obj) {
+        return obj.constructor === cls || instanceOf(Object.getPrototypeOf(obj), cls);
+    }
+    return false;
+}
+```
+
+-   排除原始值
+
+### 继承
+
+```js title=组合继承
+function Animail(name) {
+    this.name = name;
+}
+Animail.proptotype.say = function () {
+    console.log(this.name);
+};
+function Dog(name) {
+    Animail.call(this, name);
+}
+Dog.prototype = Animail.prototype;
+```
+
+### Promise
+
+```js
+const PENDING = 'pending';
+const FULFILLED = 'fulfilled';
+const REJECTED = 'rejected';
+
+class Promise {
+    state = PENDING;
+    result;
+    reason;
+    handlers: [];
+    constructor(call) {
+        try {
+            call(this.resolve, this.reject);
+        } catch (error) {
+            this.reject(error);
+        }
+    }
+    resolve = result => {
+        if (this.state !== PENDING) return;
+        this.result = result;
+    };
+    reject = reason => {
+        if (this.state !== PENDING) return;
+        this.reason = reason;
+    };
+    doHandlers = () => {
+        while (this.handlers.length) {
+            const { onFulfilled, onRejected, resolve, reject } = this.handlers.shift();
+            try {
+                if (this.state === FULFILLED) {
+                    typeof onFulfilled === 'function' ? resolve(onFulfilled(result)) : resolve(result);
+                } else if (this.state === REJECTED) {
+                    typeof onRejected === 'function' ? resolve(onRejected(result)) : reject(result);
+                }
+            } catch (error) {
+                reject(error);
+            }
+        }
+    };
+    then = (onFulfilled, onRejected) => {
+        return new Promise((resolve, reject) => {
+            if (this.state === PENDING) {
+                this.handlers.push({
+                    onFulfilled,
+                    onRejected,
+                    resolve,
+                    reject
+                });
+            } else if (this.state === REJECTED) {
+                reject(this.reason);
+            } else if (this.state === FULFILLED) {
+                resolve(this.result);
+            }
+        });
+    };
+    catch = onRejected => this.then(null, onRejected);
+}
+```

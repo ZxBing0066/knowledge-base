@@ -24,3 +24,12 @@
         -   base64
 -   图片压缩
 -   多行展开省略｜ https://segmentfault.com/a/1190000040030723
+
+## 参考资料
+
+-   ECMA 标准：https://tc39.es/ecma262/multipage/
+-   W3C 标准：https://www.w3.org/TR/
+-   MDN：https://developer.mozilla.org/en-US/
+-   Google Web Dev：https://web.dev/
+-   https://javascript.info/
+-   https://www.ecma-international.org/publications-and-standards/standards/ecma-262/
