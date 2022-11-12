@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
     title: '嘿知识',
     tagline: '嘿嘿的个人知识库',
-    url: 'https://your-docusaurus-test-site.com',
+    url: 'https://knowledge.heyfe.org',
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
