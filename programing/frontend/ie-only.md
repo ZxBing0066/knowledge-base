@@ -143,6 +143,10 @@ EOT 格式字体
 
 HEVC 视频格式
 
+### 外部元素嵌入
+
+embed 和 object 两个标签用于在浏览器中插入外部控件，一般而言 ie 只支持 object 标签，非 ie 只支持 embed 标签。
+
 ## 实测
 
 ### fieldset

@@ -2,6 +2,13 @@
 
 -   跨域
     -   jsonp
+        -   实现
+            -   发起 script get 请求
+            -   全局嵌入回调函数
+            -   后端按照请求生成 script，script 中调用回调传入数据
+        -   缺陷
+            -   只支持 get
+            -   需要后端配合
     -   iframe + location.href/window.name
     -   反代
     -   cors
@@ -33,8 +40,7 @@
         -   验证 origin、referer
         -   验证码
         -   通过使用第三方网站无法获取的 token 进行验证
-        -   ｜ 如将 token 设置为 samesite，然后网站中通过脚本获取后写入请求头中，第三方网站中的脚本无权限获取该 token 则
-            导致验证失败
+        -   ｜ 如将 token 设置为 samesite，然后网站中通过脚本获取后写入请求头中，第三方网站中的脚本无权限获取该 token 则导致验证失败
 -   XSS: Cross-Site Scripting
     -   存储
         -   攻击手段

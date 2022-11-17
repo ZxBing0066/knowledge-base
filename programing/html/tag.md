@@ -1,11 +1,5 @@
 # 标签/元素
 
-## 注意
-
--   非标准元素(如 xxx)浏览器不会报错，会作为 HTMLUnknownElement
--   自定义元素（如 x-xxx）会作为 HTMLElement
--   名称带有 - 的元素将会被视为自定义元素，其余未定义的被视为非标准元素
-
 ## html
 
 -   lang 页面语言设置
@@ -54,8 +48,8 @@
         -   search 搜索
         -   url 链接地址
         -   tel 电话，手机
-        -   button, reset, submit 几种按钮，同 button，和 button 的区别：button 中可嵌入各种元素：图片等，但 input
-            button 只能使用 value 展示文字类信息
+        -   button, reset, submit 几种按钮，同 button，和 button 的区别：button 中可嵌入各种元素：图片等，但 input button 只能使用 value 展示文字类信
+            息
 -   textarea 文本域
 -   button 包含三种按钮：
     -   ​reset 可点击后清空表单
@@ -82,8 +76,7 @@
 -   autocomplete 控制浏览器自动填写行为，可关闭或指定自动填充类型：address、new-password 等
 -   input 回车触发提交 ⚠️
 -   submit 按钮触发提交 ⚠️
--   阻止默认提交行为 ⚠️ 目前大部分表单均使用 js 提交，需要组织表单的默认行为并拿到数据后使用 js 发送请求，否则默认行为会
-    导致页面提交、刷新
+-   阻止默认提交行为 ⚠️ 目前大部分表单均使用 js 提交，需要组织表单的默认行为并拿到数据后使用 js 发送请求，否则默认行为会导致页面提交、刷新
 
 ## 表格
 
@@ -97,8 +90,8 @@
 -   th ｜ 表头格
 -   td ｜ 数据格
 -   caption ｜ 标题
--   colgroup, col ｜ 用作定义表列的宽度｜ 可通过定义 col 的宽度定义该列的宽度，如果 table-layout 为 fixed 时，宽度将为固
-    定值，否则将作为权重值，按照 table 的宽度分配给 col
+-   colgroup, col ｜ 用作定义表列的宽度｜ 可通过定义 col 的宽度定义该列的宽度，如果 table-layout 为 fixed 时，宽度将为固定值，否则将作为权重值，按照
+    table 的宽度分配给 col
 
 ### 属性
 
@@ -146,8 +139,8 @@
 
 -   noscript ｜ 不支持脚本时的兼容展示
 -   canvas🧑🏻‍💻 ｜ 画布 canvas
--   embed/object param🫥 ｜ 嵌入内容｜ 可嵌入各种内容，浏览器会使用插件等展示内容，可用于视频、pdf 等展示｜ embed 和
-    object 区别：embed 为 H5 标准，object 较旧，推荐使用 embed
+-   embed/object param🫥 ｜ 嵌入内容｜ 可嵌入各种内容，浏览器会使用插件等展示内容，可用于视频、pdf 等展示｜ embed 和 object 区别：embed 为 H5 标准
+    ，object 较旧，推荐使用 embed
 -   style ｜ 嵌入 css - media ｜ 可使用该标签实现媒体查询
 -   script ｜ 嵌入 js
     -   src ｜ 载入远程脚本文件
@@ -192,3 +185,13 @@
 -   dialog
 -   ruby, rp, rt ｜ 为东亚字符注音/注释
 -   address ins del i b kbd mark strong s sub sup small ｜ 语义化
+
+## 注意
+
+:::danger
+
+-   非标准元素(如 xxx)浏览器不会报错，会作为 HTMLUnknownElement
+-   自定义元素（如 x-xxx）会作为 HTMLElement
+-   名称带有 - 的元素将会被视为自定义元素，其余未定义的被视为非标准元素
+
+:::
