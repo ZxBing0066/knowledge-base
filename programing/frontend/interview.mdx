@@ -164,7 +164,7 @@ function throttle(fn, wait) {
 ```js title=instanceof
 function instanceOf(obj, cls) {
     if (obj) {
-        return obj.constructor === cls || instanceOf(Object.getPrototypeOf(obj), cls);
+        return obj === cls.prototype || instanceOf(Object.getPrototypeOf(obj), cls);
     }
     return false;
 }
@@ -194,14 +194,17 @@ const PENDING = 'pending';
 const FULFILLED = 'fulfilled';
 const REJECTED = 'rejected';
 
+const isThenable = obj => 'then' in obj;
+const isPromise = obj => obj instanceof Promise;
+
 class Promise {
     state = PENDING;
     result;
     reason;
-    handlers: [];
-    constructor(call) {
+    handlers = [];
+    constructor(executor) {
         try {
-            call(this.resolve, this.reject);
+            executor(this.resolve, this.reject);
         } catch (error) {
             this.reject(error);
         }
@@ -209,41 +212,67 @@ class Promise {
     resolve = result => {
         if (this.state !== PENDING) return;
         this.result = result;
+        this.state = FULFILLED;
+        this.doHandlers();
     };
     reject = reason => {
         if (this.state !== PENDING) return;
         this.reason = reason;
+        this.state = REJECTED;
+        this.doHandlers();
     };
     doHandlers = () => {
-        while (this.handlers.length) {
-            const { onFulfilled, onRejected, resolve, reject } = this.handlers.shift();
-            try {
-                if (this.state === FULFILLED) {
-                    typeof onFulfilled === 'function' ? resolve(onFulfilled(result)) : resolve(result);
-                } else if (this.state === REJECTED) {
-                    typeof onRejected === 'function' ? resolve(onRejected(result)) : reject(result);
-                }
-            } catch (error) {
-                reject(error);
+        // wait for then
+        setTimeout(() => {
+            while (this.handlers.length) {
+                this.doHandler(this.handlers.shift());
             }
+        });
+    };
+    doHandler = handler => {
+        const { onFulfilled, onRejected, resolve, reject } = handler;
+        console.log(handler, this);
+        try {
+            if (this.state === FULFILLED) {
+                typeof onFulfilled === 'function' ? resolve(onFulfilled(this.result)) : resolve(this.result);
+            } else if (this.state === REJECTED) {
+                typeof onRejected === 'function' ? resolve(onRejected(this.reason)) : reject(this.reason);
+            }
+        } catch (error) {
+            reject(error);
         }
     };
     then = (onFulfilled, onRejected) => {
         return new Promise((resolve, reject) => {
+            const handler = {
+                onFulfilled,
+                onRejected,
+                resolve,
+                reject
+            };
             if (this.state === PENDING) {
-                this.handlers.push({
-                    onFulfilled,
-                    onRejected,
-                    resolve,
-                    reject
-                });
-            } else if (this.state === REJECTED) {
-                reject(this.reason);
-            } else if (this.state === FULFILLED) {
-                resolve(this.result);
+                this.handlers.push(handler);
+            } else {
+                setTimeout(() => this.doHandler(handler));
             }
         });
     };
     catch = onRejected => this.then(null, onRejected);
 }
+
+new Promise((resolve, reject) => {
+    console.log(1);
+    resolve(2);
+}).then(console.log, console.error);
+
+Promise.defer = Promise.deferred = function () {
+    let dfd = {};
+    dfd.promise = new Promise((resolve, reject) => {
+        dfd.resolve = resolve;
+        dfd.reject = reject;
+    });
+    return dfd;
+};
+
+module.exports = Promise;
 ```

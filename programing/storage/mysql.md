@@ -30,3 +30,7 @@ select * from job where JSON_CONTAINS(`staffs`, '1')
 select * from block where JSON_SEARCH(`files`, 'all', '%322%', null, '$[*].name')
 -- 在 block 表中查找所有（all）满足条件：files 字段的 JSON 字符 path 为 $[*].name 的值匹配 %322% 的数据
 ```
+
+## 工具
+
+-   macOS Sequel Ace

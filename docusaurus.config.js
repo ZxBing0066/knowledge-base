@@ -159,6 +159,10 @@ const config = {
                                 href: 'https://github.com/ZxBing0066'
                             },
                             {
+                                label: '个人首页',
+                                href: 'https://www.heyfe.org'
+                            },
+                            {
                                 label: '博客首页',
                                 href: 'https://blog.heyfe.org/'
                             },

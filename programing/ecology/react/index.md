@@ -50,7 +50,7 @@
     -   dispatcher
 -   hooks 优势
     -   方便代码的复用
-    -   支持生命周期，可以方便管理
+    -   支持生命周期拆分，可以方便管理
 -   keys
 -   refs
 -   setState
