@@ -57,6 +57,15 @@ const config = {
                 routeBasePath: 'awesome',
                 sidebarPath: require.resolve('./sidebars.js')
             }
+        ],
+        [
+            '@docusaurus/plugin-content-docs',
+            {
+                id: 'other',
+                path: 'other',
+                routeBasePath: 'other',
+                sidebarPath: require.resolve('./sidebars.js')
+            }
         ]
     ],
     themeConfig:
@@ -85,6 +94,12 @@ const config = {
                         label: '有趣',
                         position: 'left',
                         activeBaseRegex: `/awesome/`
+                    },
+                    {
+                        to: '/other/',
+                        label: '其它',
+                        position: 'left',
+                        activeBaseRegex: `/other/`
                     },
                     {
                         href: 'https://blog.heyfe.org',
