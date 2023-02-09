@@ -27,3 +27,10 @@
 -   不推荐使用
 
 参考：https://www.bilibili.com/video/BV1t84y1a7FU/?spm_id_from=333.337.search-card.all.click&vd_source=5a32df36c2d0d1b5c72b2ba1af61fd32
+
+## shoe store | clothes store
+
+-   shoe store 里 shoe 为单数，但是 clothes store 里 cloth 为复数。
+-   有解释称 shoe store 中的 shoe 为形容词，而非名词，那为啥 cloth 不能用作形容词。
+
+参考： https://ell.stackexchange.com/questions/167011/shoes-shopping-is-this-the-correct-plural
