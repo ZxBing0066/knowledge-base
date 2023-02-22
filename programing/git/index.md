@@ -15,6 +15,8 @@ tags: [基础]
 -   https://github.com/k88hudson/git-flight-rules
 -   git bisect
 -   git 恢复
+-   对不同项目/不同文件夹使用不同 git 配置/用户名
+    https://stackoverflow.com/questions/8801729/is-it-possible-to-have-different-git-configuration-for-different-projects
 
 ## 托管
 

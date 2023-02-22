@@ -14,3 +14,7 @@ https://www.timeanddate.com/time/zone/china/shanghai 此网站中提供的时区
 参考资料：https://stackoverflow.com/questions/50640010/why-is-new-date-returning-the-wrong-timezone-in-chrome
 
 ## 夏令时
+
+-   不占位隐藏字符
+-   同样展示字符 实际编码未必相同
+-   文件中转固定编码名称

@@ -191,3 +191,296 @@ Number.isNaN 判断 NaN
 [^4]: [JS Object Layout](http://mollypages.org/tutorials/js.mp)
 [^5]: [new 操作符](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new#description)
 [^6]: [Event loops](https://html.spec.whatwg.org/multipage/webappapis.html#event-loops)
+
+## Typeof
+
+```js
+const allTypesOfValue = [null, undefined, true, 1, NaN, Infinity, 'string', Symbol('symbol'), () => {}, {}, [], /1/, new Date()];
+
+const tableTypeof = [];
+allTypesOfValue.forEach(v => {
+    tableTypeof.push({
+        value: v,
+        typeofResult: typeof v
+    });
+});
+console.table(tableTypeof);
+```
+
+| value            | TypeofResult |
+| ---------------- | ------------ |
+| null             | object       |
+| undefined        | undefined    |
+| true             | boolean      |
+| 1                | number       |
+| NaN              | number       |
+| Infinity         | number       |
+| 'string'         | string       |
+| Symbol('symbol') | symbol       |
+| () => {}         | function     |
+| {}               | object       |
+| []               | object       |
+| /1/              | object       |
+| new Date()       | object       |
+
+It's a bug of typeof null is equal to object, but this is unable to change
+
+if a variable is an Object, type of it will return `object` or `function`, and it's not equal to `null`, so:
+
+```js
+function isObject(v) {
+    const type = typeof v;
+    return v !== null && (type === 'function' || type === 'object');
+}
+```
+
+## Object.prototype.toString
+
+In MDN [Object.prototype.toString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)
+
+> `toString()` can be used with every object and allows you to get its class.
+
+```js
+const allTypesOfValue = [null, undefined, true, 1, NaN, Infinity, 'string', Symbol('symbol'), () => {}, {}, [], /1/, new Date()];
+
+const tableToString = [];
+allTypesOfValue.forEach(v => {
+    tableToString.push({
+        value: v,
+        toStringResult: Object.prototype.toString.call(v)
+    });
+});
+console.table(tableToString);
+```
+
+| value            | toStringResult     |
+| ---------------- | ------------------ |
+| null             | [object Null]      |
+| undefined        | [object Undefined] |
+| true             | [object Boolean]   |
+| 1                | [object Number]    |
+| NaN              | [object Number]    |
+| Infinity         | [object Number]    |
+| 'string'         | [object String]    |
+| Symbol('symbol') | [object Symbol]    |
+| () => {}         | [object Function]  |
+| {}               | [object Object]    |
+| []               | [object Array]     |
+| /1/              | [object RegExp]    |
+| new Date()       | [object Date]      |
+
+## How to know type of a variable
+
+Use toString to get variable's type
+
+Object.prototype.toString can be used to get variable's type
+
+In Underscore
+
+```js
+_.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error'], function (name) {
+    _['is' + name] = function (obj) {
+        return toString.call(obj) === '[object ' + name + ']';
+    };
+});
+```
+
+## Instanceof
+
+From MDN:
+
+> The **instanceof operator** tests whether the `prototype` property of a constructor appears anywhere in the prototype chain of an object.
+
+```js
+function A() {
+    this.a = 1;
+}
+const a = new A();
+a instanceof A; // true
+```
+
+Some thing interesting:
+
+```js
+Object instanceof Object; // true
+Object instanceof Function; // true
+Function instanceof Object; // true
+Function instanceof Function; // true
+```
+
+`instanceof` operator will check is there some `__proto__` from the right is inherit from the left's `prototype`.
+
+From [ibm-developer](https://www.ibm.com/developerworks/cn/web/1306_jiangjj_jsinstanceof/index.html)
+
+```js
+function instance_of(L, R) {
+    //L 表示左表达式，R 表示右表达式
+    var O = R.prototype; // 取 R 的显示原型
+    L = L.__proto__; // 取 L 的隐式原型
+    while (true) {
+        if (L === null) return false;
+        if (O === L)
+            // 这里重点：当 O 严格等于 L 时，返回 true
+            return true;
+        L = L.__proto__;
+    }
+}
+```
+
+## data type conversion
+
+## Comparison operators
+
+### Abstract Equality Comparison(==)
+
+There is some strangely comparison, such as:
+
+```js
+null == undefined; // true
+(NaN ==
+    NaN + // false
+        0) ==
+    -0; // true
+1 == '1'; // true		same as 1 === Number('1')
+1 == true; // true		same as 1 === Number(true)		Number(true) is equal to 1 and Number(false) is equal to 0
+2 == true; // false
+'[object Object]' == { a: 1 }; // true		same as "[object Object]" === ({a:1}).toString()
+123 == new Number(123); // true		same as 123 === (new Number(123)).valueOf()
+'Wed Feb 07 2018 10:44:41 GMT+0800 (CST)' == new Date(); // true		same as "Wed Feb 07 2018 10:44:41 GMT+0800 (CST)" == (new Date).toString()
+```
+
+It's because of the rules in the [ecma](http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3)
+
+> The comparison x == y, where x and y are values, produces **true** or **false**. Such a comparison is performed as follows:
+>
+> 1.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is the same as
+>     [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_y_), then
+>     1.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Undefined, return **true**.
+>     2.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Null, return **true**.
+>     3.  If Type(x) is Number, then
+>         1.  If _x_ is **NaN**, return **false**.
+>         2.  If _y_ is **NaN**, return **false**.
+>         3.  If _x_ is the same Number value as _y_, return **true**.
+>         4.  If _x_ is **+0** and _y_ is **−0**, return **true**.
+>         5.  If _x_ is **−0** and _y_ is **+0**, return **true**.
+>         6.  Return **false**.
+>     4.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is String, then return **true** if _x_ and _y_ are exactly the same
+>         sequence of characters (same length and same characters in corresponding positions). Otherwise, return **false**.
+>     5.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Boolean, return **true** if _x_ and _y_ are both **true** or both
+>         **false**. Otherwise, return **false**.
+>     6.  Return **true** if _x_ and _y_ refer to the same object. Otherwise, return **false**.
+> 2.  If _x_ is **null** and _y_ is **undefined**, return **true**.
+> 3.  If _x_ is **undefined** and _y_ is **null**, return **true**.
+> 4.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Number and
+>     [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_y_) is String, return the result of the comparison _x_ ==
+>     [ToNumber](http://www.ecma-international.org/ecma-262/5.1/#sec-9.3)(_y_).
+> 5.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is String and
+>     [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_y_) is Number, return the result of the comparison
+>     [ToNumber](http://www.ecma-international.org/ecma-262/5.1/#sec-9.3)(_x_) == _y_.
+> 6.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Boolean, return the result of the comparison
+>     [ToNumber](http://www.ecma-international.org/ecma-262/5.1/#sec-9.3)(_x_) == _y_.
+> 7.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_y_) is Boolean, return the result of the comparison _x_ ==
+>     [ToNumber](http://www.ecma-international.org/ecma-262/5.1/#sec-9.3)(_y_).
+> 8.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is either String or Number and
+>     [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_y_) is Object, return the result of the comparison _x_ ==
+>     [ToPrimitive](http://www.ecma-international.org/ecma-262/5.1/#sec-9.1)(_y_).
+> 9.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Object and
+>     [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_y_) is either String or Number, return the result of the comparison
+>     [ToPrimitive](http://www.ecma-international.org/ecma-262/5.1/#sec-9.1)(_x_) == _y_.
+> 10. Return **false**.
+
+|           | Operand B |           |         |                       |                               |                                 |                                 |
+| --------- | --------- | --------- | ------- | --------------------- | ----------------------------- | ------------------------------- | ------------------------------- |
+|           |           | Undefined | Null    | Number                | String                        | Boolean                         | Object                          |
+| Operand A | Undefined | `true`    | `true`  | `false`               | `false`                       | `false`                         | `false`                         |
+|           | Null      | `true`    | `true`  | `false`               | `false`                       | `false`                         | `false`                         |
+|           | Number    | `false`   | `false` | `A === B`             | `A === ToNumber(B)`           | `A === ToNumber(B)`             | `A == ToPrimitive(B)`           |
+|           | String    | `false`   | `false` | `ToNumber(A) === B`   | `A === B`                     | `ToNumber(A) === ToNumber(B)`   | `A == ToPrimitive(B)`           |
+|           | Boolean   | `false`   | `false` | `ToNumber(A) === B`   | `ToNumber(A) === ToNumber(B)` | `A === B`                       | `ToNumber(A) == ToPrimitive(B)` |
+|           | Object    | `false`   | `false` | `ToPrimitive(A) == B` | `ToPrimitive(A) == B`         | `ToPrimitive(A) == ToNumber(B)` | `A === B`                       |
+
+### ToPrimitive
+
+```js
+var a = {};
+a.toString = () => {
+    console.log('toString');
+    return {};
+};
+a.valueOf = () => {
+    console.log('valueOf');
+    return {};
+};
+a == '';
+/**
+valueOf
+toString
+Uncaught TypeError: Cannot convert object to primitive value
+*/
+```
+
+When compare `Object` to `String` or `Number`, `js` will call the `toPrimitive` of the `Object` without hint, `toPrimitive` will call `valueOf` and
+`toString` in order then no hint, when one of them return `primitive value`, will return the camparison of the `primitive value`, or throw a exception
+like the code above.
+
+### Strict Equality Comparison(===)
+
+```js
+-0 === +0; // true
+```
+
+In [ecma](http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.6)
+
+> 1.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is different from
+>     [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_y_), return **false**.
+> 2.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Undefined, return **true**.
+> 3.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Null, return **true**.
+> 4.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Number, then
+>     1.  If _x_ is **NaN**, return **false**.
+>     2.  If _y_ is **NaN**, return **false**.
+>     3.  If _x_ is the same Number value as _y_, return **true**.
+>     4.  If _x_ is **+0** and _y_ is **−0**, return **true**.
+>     5.  If _x_ is **−0** and _y_ is **+0**, return **true**.
+>     6.  Return **false**.
+> 5.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is String, then return **true** if _x_ and _y_ are exactly the same
+>     sequence of characters (same length and same characters in corresponding positions); otherwise, return **false**.
+> 6.  If [Type](http://www.ecma-international.org/ecma-262/5.1/#sec-8)(_x_) is Boolean, return **true** if _x_ and _y_ are both **true** or both
+>     **false**; otherwise, return **false**.
+> 7.  Return **true** if _x_ and _y_ refer to the same object. Otherwise, return **false**.
+
+### Object.is
+
+`Object.is` is like `===`,besides of number compare:
+
+```js
+Object.is(+0, -1); // false
+Object.is(NaN, NaN); // true
+```
+
+| x                   | y                   | `==`    | `===`   | `Object.is` | `SameValueZero` |
+| ------------------- | ------------------- | ------- | ------- | ----------- | --------------- |
+| `undefined`         | `undefined`         | `true`  | `true`  | `true`      | `true`          |
+| `null`              | `null`              | `true`  | `true`  | `true`      | `true`          |
+| `true`              | `true`              | `true`  | `true`  | `true`      | `true`          |
+| `false`             | `false`             | `true`  | `true`  | `true`      | `true`          |
+| `'foo'`             | `'foo'`             | `true`  | `true`  | `true`      | `true`          |
+| `0`                 | `0`                 | `true`  | `true`  | `true`      | `true`          |
+| `+0`                | `-0`                | `true`  | `true`  | `false`     | `true`          |
+| `+0`                | `0`                 | `true`  | `true`  | `true`      | `true`          |
+| `-0`                | `0`                 | `true`  | `true`  | `false`     | `true`          |
+| `0`                 | `false`             | `true`  | `false` | `false`     | `false`         |
+| `""`                | `false`             | `true`  | `false` | `false`     | `false`         |
+| `""`                | `0`                 | `true`  | `false` | `false`     | `false`         |
+| `'0'`               | `0`                 | `true`  | `false` | `false`     | `false`         |
+| `'17'`              | `17`                | `true`  | `false` | `false`     | `false`         |
+| `[1, 2]`            | `'1,2'`             | `true`  | `false` | `false`     | `false`         |
+| `new String('foo')` | `'foo'`             | `true`  | `false` | `false`     | `false`         |
+| `null`              | `undefined`         | `true`  | `false` | `false`     | `false`         |
+| `null`              | `false`             | `false` | `false` | `false`     | `false`         |
+| `undefined`         | `false`             | `false` | `false` | `false`     | `false`         |
+| `{ foo: 'bar' }`    | `{ foo: 'bar' }`    | `false` | `false` | `false`     | `false`         |
+| `new String('foo')` | `new String('foo')` | `false` | `false` | `false`     | `false`         |
+| `0`                 | `null`              | `false` | `false` | `false`     | `false`         |
+| `0`                 | `NaN`               | `false` | `false` | `false`     | `false`         |
+| `'foo'`             | `NaN`               | `false` | `false` | `false`     | `false`         |
+| `NaN`               | `NaN`               | `false` | `false` | `true`      | `true`          |

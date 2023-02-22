@@ -17,3 +17,8 @@
 包含一些在线聊天活动等，里面有很多英语交流活动。部分收费注意甄别。
 
 官网地址：https://www.meetup.com/home/
+
+
+http://www.xoolee.com/2014/download.php
+
+https://www.v2ex.com/t/834175#reply18
