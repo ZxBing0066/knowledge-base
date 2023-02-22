@@ -39,10 +39,11 @@ A: 使用 flex 布局，可解决此类问题
 ```
 
 <iframe src="https://codesandbox.io/embed/competent-leftpad-z1boc?fontsize=14&hidenavigation=1&module=%2Fsrc%2Fstyles.css&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
      title="competent-leftpad-z1boc"
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+     width="100%"
+     height="500"
    ></iframe>
 
 ## overflow 和 box-shadow
@@ -64,4 +65,4 @@ npm 版本与 pnpm 源不匹配，需要降级至 npm 7 以下
 
 https://www.regular-expressions.info/catastrophic.html
 
-^(.|\s)*?(\/\/\s*demo\s*start\s*)
+`^(.|\s)*?(\/\/\s*demo\s*start\s*)`
