@@ -38,7 +38,7 @@ alias zshconfig="mate ~/.zshrc" # 配置别名
 echo "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"
 ```
 ![字体支持后的输出](https://gist.githubusercontent.com/agnoster/3712874/raw/characters.png)
-2. 不支持是需要安装[powerline字体](`https://github.com/powerline/fonts`)
+2. 不支持是需要安装[powerline字体](https://github.com/powerline/fonts)
 3. 安装字体后需要配置`terminal`的字体展示
 > `iterm`中在`Preferences => Profiles => Text`中修改`Non-ASCII Font`为刚刚安装的字体即可,若是仍然不能展示可重启`terminal`试试
 
